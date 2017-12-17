@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+    main:
+        image: stevo25/meteor-with-docker
+        build: "."
+        stdin_open: true
+        tty: true
+        entrypoint: [/bin/sh]
+        depends_on:
+        - docker
+        environment:
+        - DOCKER_HOST=tcp://docker:2375
+
+    docker:
+        image: docker:dind
+        privileged: true
